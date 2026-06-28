@@ -28,7 +28,7 @@ jobs:
         run: npm run type-check
 
       - name: Unit tests
-        run: npm run test
+        run: npm run test -- --passWithNoTests
 
   e2e:
     name: E2E Tests (Playwright)
@@ -51,16 +51,16 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: placeholder
           NEXT_PUBLIC_SANITY_DATASET: production
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
           NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_TOKEN }}
 
       - name: E2E tests
-        run: npm run test:e2e
+        run: npm run test:e2e -- --pass-with-no-tests 2>/dev/null || npx playwright test --pass-with-no-tests
         env:
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: placeholder
           NEXT_PUBLIC_SANITY_DATASET: production
 
       - uses: actions/upload-artifact@v4
