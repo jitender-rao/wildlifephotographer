@@ -13,14 +13,14 @@ _(Describe the high-level purpose and structure of the site once decided.)_
 
 ## Tech Stack
 
-| Layer | Choice | Notes |
-|-------|--------|-------|
-| Framework | TBD | |
-| Styling | TBD | |
-| CMS / Content | TBD | |
-| Hosting | TBD | |
-| CI/CD | GitHub Actions | |
-| Domain | TBD | |
+| Layer         | Choice         | Notes |
+| ------------- | -------------- | ----- |
+| Framework     | TBD            |       |
+| Styling       | TBD            |       |
+| CMS / Content | TBD            |       |
+| Hosting       | TBD            |       |
+| CI/CD         | GitHub Actions |       |
+| Domain        | TBD            |       |
 
 ---
 
@@ -51,13 +51,13 @@ wildlifephotographer/
 
 ## Pages & Routes
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | Home | Hero, intro, featured gallery |
-| `/gallery` | Gallery | Full photo collection with filters |
-| `/about` | About | Photographer bio and story |
-| `/contact` | Contact | Contact form |
-| _(more TBD)_ | | |
+| Route        | Page    | Description                        |
+| ------------ | ------- | ---------------------------------- |
+| `/`          | Home    | Hero, intro, featured gallery      |
+| `/gallery`   | Gallery | Full photo collection with filters |
+| `/about`     | About   | Photographer bio and story         |
+| `/contact`   | Contact | Contact form                       |
+| _(more TBD)_ |         |                                    |
 
 ---
 
@@ -81,6 +81,6 @@ _(Describe the deployment pipeline once hosting is chosen.)_
 
 ## Change Log
 
-| Date | Section Changed | Summary |
-|------|----------------|---------|
-| 2026-06-28 | Initial | Architecture doc created |
+| Date       | Section Changed | Summary                  |
+| ---------- | --------------- | ------------------------ |
+| 2026-06-28 | Initial         | Architecture doc created |

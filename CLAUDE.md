@@ -20,6 +20,7 @@ All rules here override Claude's default behavior.
 > Each rule should be clear and actionable.
 
 ### General
+
 - Always follow the architecture described in `docs/architecture.md`.
 - Never delete or overwrite `docs/architecture.md` without updating it first.
 - Prefer editing existing files over creating new ones.
@@ -27,26 +28,31 @@ All rules here override Claude's default behavior.
 - Do not add features, abstractions, or refactors beyond what the task requires.
 
 ### Code Quality
+
 - All code must pass linting and formatting checks before commit (enforced by pre-commit hook).
 - All new features must have corresponding tests.
 - No hardcoded secrets, API keys, or credentials in source files — use environment variables.
 
 ### Git Workflow
+
 - Branch naming: `feature/<name>`, `fix/<name>`, `chore/<name>`, `docs/<name>`
 - Commit messages must be clear and describe the WHY, not just the WHAT.
 - Never force-push to `main`.
 - PRs must pass CI checks before merging.
 
 ### Architecture
+
 - Update `docs/architecture.md` whenever you add or modify a major feature, page, or integration.
 - If staged files touch `src/` and `docs/architecture.md` is not also staged, the pre-commit hook will block the commit.
 
 ### Security
+
 - Validate all user inputs at system boundaries.
 - Never introduce XSS, SQL injection, or other OWASP Top 10 vulnerabilities.
 - Review third-party dependencies before adding them.
 
 ### Agents
+
 - Use the appropriate agent for each task (see `.claude/agents/`).
 - Agents must not take destructive actions (delete files, drop DB tables, force-push) without explicit user confirmation.
 
@@ -54,11 +60,11 @@ All rules here override Claude's default behavior.
 
 ## Stack Decisions Log
 
-| Date | Decision | Reason |
-|------|----------|--------|
-| _(pending)_ | Framework choice | _(to be decided)_ |
-| _(pending)_ | Hosting platform | _(to be decided)_ |
-| _(pending)_ | CSS approach | _(to be decided)_ |
+| Date        | Decision            | Reason            |
+| ----------- | ------------------- | ----------------- |
+| _(pending)_ | Framework choice    | _(to be decided)_ |
+| _(pending)_ | Hosting platform    | _(to be decided)_ |
+| _(pending)_ | CSS approach        | _(to be decided)_ |
 | _(pending)_ | CMS / content layer | _(to be decided)_ |
 
 ---

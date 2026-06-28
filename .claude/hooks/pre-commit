@@ -74,17 +74,25 @@ fi
 
 # Only run if package.json exists (i.e. a Node project is initialized)
 if [ -f "$REPO_ROOT/package.json" ]; then
-  echo ">>> npm run format (if script exists)"
-  npm run format --if-present
+  # Format (only if the script exists in package.json)
+  if node -e "require('./package.json').scripts.format" 2>/dev/null; then
+    echo ">>> npm run format"
+    npm run format
+    # Re-stage any files changed by the formatter
+    git diff --name-only --diff-filter=M | xargs -I{} git add "{}" 2>/dev/null || true
+  fi
 
-  # Re-stage any files changed by the formatter
-  git diff --name-only --diff-filter=M | xargs -I{} git add "{}" 2>/dev/null || true
+  # Lint (only if the script exists)
+  if node -e "require('./package.json').scripts.lint" 2>/dev/null; then
+    echo ">>> npm run lint"
+    npm run lint
+  fi
 
-  echo ">>> npm run lint"
-  npm run lint --if-present
-
-  echo ">>> npm test (if script exists)"
-  npm test --if-present -- --passWithNoTests 2>/dev/null || true
+  # Tests (only if the script exists; allow no-test-found exit)
+  if node -e "require('./package.json').scripts.test" 2>/dev/null; then
+    echo ">>> npm test"
+    npm test -- --passWithNoTests 2>/dev/null || true
+  fi
 fi
 
 echo ">>> pre-commit checks passed."

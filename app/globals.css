@@ -1,0 +1,204 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ── Wild Wanderings brand tokens ── */
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-border-ww: #2a2a2a;
+  --color-text: #f5f5f0;
+  --color-muted-ww: #8a8a82;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e8c97a;
+
+  /* ── shadcn/ui semantic tokens (dark-first — site is always dark) ── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* ── Typography ── */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+
+  /* ── Radius ── */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+
+  /* ── Keyframes ── */
+  --animate-fade-up: fadeUp 0.6s ease-out forwards;
+  --animate-shimmer: shimmer 1.5s infinite;
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shimmer {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+}
+
+/* ── Always dark — no light theme needed ── */
+:root {
+  --background: #0a0a0a;
+  --foreground: #f5f5f0;
+  --card: #141414;
+  --card-foreground: #f5f5f0;
+  --popover: #141414;
+  --popover-foreground: #f5f5f0;
+  --primary: #c9a84c; /* gold */
+  --primary-foreground: #0a0a0a;
+  --secondary: #1e1e1e;
+  --secondary-foreground: #f5f5f0;
+  --muted: #1e1e1e;
+  --muted-foreground: #8a8a82;
+  --accent: #2a2a2a;
+  --accent-foreground: #f5f5f0;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #2a2a2a;
+  --input: #1e1e1e;
+  --ring: #c9a84c;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    background-color: #0a0a0a;
+    color: #f5f5f0;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, #c9a84c 30%, transparent);
+    color: #f5f5f0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #141414;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9a84c;
+  }
+}
+
+@layer components {
+  /* Layout helpers */
+  .container-wide {
+    @apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6;
+  }
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Typography */
+  .heading-display {
+    font-family: var(--font-display);
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+  }
+  .heading-section {
+    font-family: var(--font-display);
+    @apply text-3xl md:text-4xl font-semibold leading-tight;
+  }
+  .text-caption {
+    font-family: var(--font-mono);
+    @apply text-xs tracking-widest uppercase;
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #c9a84c, #e8c97a);
+  }
+
+  /* Surface cards */
+  .card-surface {
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    @apply rounded-lg;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    background-color: #c9a84c;
+    color: #0a0a0a;
+    @apply font-medium px-6 py-3 rounded transition-colors;
+  }
+  .btn-gold:hover {
+    background-color: #e8c97a;
+  }
+
+  .btn-outline-gold {
+    border: 1px solid #c9a84c;
+    color: #c9a84c;
+    @apply font-medium px-6 py-3 rounded transition-colors;
+  }
+  .btn-outline-gold:hover {
+    background-color: #c9a84c;
+    color: #0a0a0a;
+  }
+
+  /* Photo aspect ratios */
+  .aspect-photo {
+    aspect-ratio: 3 / 2;
+  }
+  .aspect-portrait {
+    aspect-ratio: 2 / 3;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    background-color: #1e1e1e;
+    @apply rounded animate-pulse;
+  }
+}
