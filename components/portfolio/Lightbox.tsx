@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import { X, ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
 import { useUIStore } from "@/store/uiStore";
 import { PLACEHOLDER_PHOTOS } from "@/lib/placeholder-photos";
@@ -102,14 +103,14 @@ export function Lightbox() {
           </div>
 
           {photo.availableAsPrint && (
-            <a
-              href="/shop"
+            <Link
+              href={`/shop/${photo.slug}`}
               className="btn-gold inline-flex items-center gap-2 text-sm w-fit"
               onClick={closeLightbox}
             >
               <ShoppingBag size={16} />
               Shop This Print
-            </a>
+            </Link>
           )}
 
           {total > 1 && (

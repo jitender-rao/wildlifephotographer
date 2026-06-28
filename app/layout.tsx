@@ -3,6 +3,7 @@ import { playfair, inter, spaceMono } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { CartDrawer } from "@/components/shop/CartDrawer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           {children}
+          <CartDrawer />
           <Toaster richColors theme="system" position="bottom-right" />
           <Analytics />
         </ThemeProvider>
