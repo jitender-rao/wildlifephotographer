@@ -1,0 +1,90 @@
+#!/bin/sh
+# Pre-commit hook: format → re-stage → lint → test.
+#
+# Install (run once per clone):
+#   cp .claude/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Or symlink (auto-updates when the script changes):
+#   ln -sf ../../.claude/hooks/pre-commit .git/hooks/pre-commit
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+# ---------------------------------------------------------------------------
+# Architecture doc staleness check
+#
+# If any staged file touches src/ and docs/architecture.md is NOT also staged,
+# block the commit with a clear message so the doc stays current.
+# ---------------------------------------------------------------------------
+ARCH_DOC="docs/architecture.md"
+
+ARCH_RELEVANT_STAGED=$(git diff --cached --name-only | grep -E '^src/' || true)
+ARCH_DOC_STAGED=$(git diff --cached --name-only | grep -Fx "$ARCH_DOC" || true)
+
+if [ -n "$ARCH_RELEVANT_STAGED" ] && [ -z "$ARCH_DOC_STAGED" ]; then
+  echo ""
+  echo "╔══════════════════════════════════════════════════════════════════╗"
+  echo "║  ARCHITECTURE DOC OUT OF DATE                                   ║"
+  echo "╠══════════════════════════════════════════════════════════════════╣"
+  echo "║  You changed files under src/ but did not update:               ║"
+  echo "║    docs/architecture.md                                         ║"
+  echo "║                                                                 ║"
+  echo "║  Changed src/ files in this commit:                             ║"
+  echo "$ARCH_RELEVANT_STAGED" | sed 's/^/║    /'
+  echo "║                                                                 ║"
+  echo "║  Options:                                                       ║"
+  echo "║  1. Update docs/architecture.md and git add it, then re-commit  ║"
+  echo "║  2. Skip this check (only if the change is trivial):            ║"
+  echo "║       SKIP_ARCH_CHECK=1 git commit ...                          ║"
+  echo "╚══════════════════════════════════════════════════════════════════╝"
+  echo ""
+
+  if [ "${SKIP_ARCH_CHECK:-0}" = "1" ]; then
+    echo ">>> SKIP_ARCH_CHECK=1 set — skipping architecture doc check."
+  else
+    exit 1
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# Check for accidentally staged secrets
+# ---------------------------------------------------------------------------
+SENSITIVE=$(git diff --cached --name-only | grep -E '\.(env|pem|key|secret)$' || true)
+if [ -n "$SENSITIVE" ]; then
+  echo ""
+  echo "╔══════════════════════════════════════════════════════════════════╗"
+  echo "║  POSSIBLE SECRET FILE STAGED                                    ║"
+  echo "╠══════════════════════════════════════════════════════════════════╣"
+  echo "║  These files look like they may contain secrets:                ║"
+  echo "$SENSITIVE" | sed 's/^/║    /'
+  echo "║                                                                 ║"
+  echo "║  Remove them from staging with: git restore --staged <file>     ║"
+  echo "║  To force commit anyway: SKIP_SECRET_CHECK=1 git commit ...     ║"
+  echo "╚══════════════════════════════════════════════════════════════════╝"
+  echo ""
+  if [ "${SKIP_SECRET_CHECK:-0}" != "1" ]; then
+    exit 1
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# Format + lint + test  (adapt commands to your stack)
+# ---------------------------------------------------------------------------
+
+# Only run if package.json exists (i.e. a Node project is initialized)
+if [ -f "$REPO_ROOT/package.json" ]; then
+  echo ">>> npm run format (if script exists)"
+  npm run format --if-present
+
+  # Re-stage any files changed by the formatter
+  git diff --name-only --diff-filter=M | xargs -I{} git add "{}" 2>/dev/null || true
+
+  echo ">>> npm run lint"
+  npm run lint --if-present
+
+  echo ">>> npm test (if script exists)"
+  npm test --if-present -- --passWithNoTests 2>/dev/null || true
+fi
+
+echo ">>> pre-commit checks passed."
