@@ -39,14 +39,14 @@ export default function HeroSection({ imageUrl }: HeroSectionProps) {
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUHBAj/xAAlEAACAQMEAgIDAAAAAAAAAAABAgMEBREhBhIxUWGBkaH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AzrTRdq1XbJqKOBJ5VYRhpCPpAGCc+/nv2rn6qtLQ1sFpZyT24jwvnKf1+8kk5AHvgcAcVrTRdqsNq0Cxwl4sgAuWOPJPOSap1LT7S609oFgji2sGQxgDA7xx9qAP/9k="
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/60 via-[#0A0A0A]/20 to-[#0A0A0A]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--ww-bg)]/60 via-[color:var(--ww-bg)]/20 to-[color:var(--ww-bg)]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--ww-bg)]/40 to-transparent" />
       </motion.div>
 
       {/* Content */}
       <motion.div className="relative z-10 container-wide" style={{ opacity }}>
         <motion.p
-          className="text-caption text-[#C9A84C] mb-4"
+          className="text-caption text-[color:var(--ww-gold)] mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -55,7 +55,7 @@ export default function HeroSection({ imageUrl }: HeroSectionProps) {
         </motion.p>
 
         <motion.h1
-          className="heading-display text-[#F5F5F0] max-w-3xl mb-6"
+          className="heading-display text-[color:var(--ww-text)] max-w-3xl mb-6"
           style={{ fontFamily: "var(--font-playfair)" }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function HeroSection({ imageUrl }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="text-lg text-[#F5F5F0]/70 max-w-xl mb-10 leading-relaxed"
+          className="text-lg text-[color:var(--ww-text)]/70 max-w-xl mb-10 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -99,9 +99,11 @@ export default function HeroSection({ imageUrl }: HeroSectionProps) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <span className="text-caption text-[10px] text-[#8A8A82]">Scroll</span>
+        <span className="text-caption text-[10px] text-[color:var(--ww-muted)]">
+          Scroll
+        </span>
         <motion.div
-          className="w-px h-12 bg-gradient-to-b from-[#C9A84C] to-transparent"
+          className="w-px h-12 bg-gradient-to-b from-[color:var(--ww-gold)] to-transparent"
           animate={{ scaleY: [0, 1, 0], originY: 0 }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />

@@ -7,6 +7,7 @@ import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 interface NavLink {
   href: string;
@@ -47,7 +48,7 @@ export default function NavbarClient({
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
           scrolled
-            ? "backdrop-blur-md bg-[#0A0A0A]/85 border-b border-[#2A2A2A]"
+            ? "backdrop-blur-md bg-[color:var(--ww-bg)]/85 border-b border-[color:var(--ww-border)]"
             : "bg-transparent",
         )}
       >
@@ -62,10 +63,10 @@ export default function NavbarClient({
                 <Link
                   href={link.href}
                   className={cn(
-                    "text-sm tracking-wide transition-colors hover:text-[#C9A84C]",
+                    "text-sm tracking-wide transition-colors hover:text-[color:var(--ww-gold)]",
                     isActive(link.href)
-                      ? "text-[#C9A84C]"
-                      : "text-[#F5F5F0]/80",
+                      ? "text-[color:var(--ww-gold)]"
+                      : "text-[color:var(--ww-text)]/80",
                   )}
                 >
                   {link.label}
@@ -75,16 +76,19 @@ export default function NavbarClient({
           </ul>
 
           {/* Right actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
+            {/* Theme toggle */}
+            <ThemeToggle />
+
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative p-2 text-[#F5F5F0]/80 hover:text-[#C9A84C] transition-colors"
+              className="relative p-2 text-[color:var(--ww-text)]/80 hover:text-[color:var(--ww-gold)] transition-colors"
               aria-label={`Cart (${itemCount} items)`}
             >
               <ShoppingBag size={20} />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-[#C9A84C] text-[#0A0A0A] text-[10px] font-bold rounded-full flex items-center justify-center px-1">
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-[color:var(--ww-gold)] text-[color:var(--background)] text-[10px] font-bold rounded-full flex items-center justify-center px-1">
                   {itemCount > 99 ? "99+" : itemCount}
                 </span>
               )}
@@ -92,7 +96,7 @@ export default function NavbarClient({
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden p-2 text-[#F5F5F0]/80 hover:text-[#C9A84C] transition-colors"
+              className="lg:hidden p-2 text-[color:var(--ww-text)]/80 hover:text-[color:var(--ww-gold)] transition-colors"
               onClick={toggleMobileMenu}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -108,7 +112,7 @@ export default function NavbarClient({
         <div className="fixed inset-0 z-40 lg:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-[#0A0A0A]/95 backdrop-blur-md"
+            className="absolute inset-0 bg-[color:var(--ww-bg)]/95 backdrop-blur-md"
             onClick={toggleMobileMenu}
           />
           {/* Menu panel */}
@@ -118,8 +122,10 @@ export default function NavbarClient({
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-2xl font-display font-semibold py-3 border-b border-[#2A2A2A] transition-colors",
-                  isActive(link.href) ? "text-[#C9A84C]" : "text-[#F5F5F0]",
+                  "text-2xl font-display font-semibold py-3 border-b border-[color:var(--ww-border)] transition-colors",
+                  isActive(link.href)
+                    ? "text-[color:var(--ww-gold)]"
+                    : "text-[color:var(--ww-text)]",
                 )}
                 style={{ fontFamily: "var(--font-playfair)" }}
               >

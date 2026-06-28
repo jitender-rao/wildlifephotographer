@@ -38,23 +38,25 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="section-padding bg-[#141414] border-t border-[#2A2A2A]">
+    <section className="section-padding bg-[color:var(--ww-surface)] border-t border-[color:var(--ww-border)]">
       <div className="container-narrow text-center">
-        <p className="text-caption text-[#C9A84C] mb-3">Field Notes</p>
+        <p className="text-caption text-[color:var(--ww-gold)] mb-3">
+          Field Notes
+        </p>
         <h2
-          className="heading-section text-[#F5F5F0] mb-4"
+          className="heading-section text-[color:var(--ww-text)] mb-4"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
           Get stories from the jungle
         </h2>
-        <p className="text-[#8A8A82] mb-10 max-w-md mx-auto">
+        <p className="text-[color:var(--ww-muted)] mb-10 max-w-md mx-auto">
           Tiger sightings, trip reports, and photography tips — straight from
           the field. No spam, ever.
         </p>
 
         {submitted ? (
           <p
-            className="text-[#C9A84C] text-lg font-medium"
+            className="text-[color:var(--ww-gold)] text-lg font-medium"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Welcome to the wild! 🐾 Check your inbox.
@@ -69,7 +71,7 @@ export default function NewsletterSection() {
                 type="email"
                 placeholder="your@email.com"
                 {...register("email")}
-                className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#2A2A2A] rounded text-[#F5F5F0] placeholder:text-[#8A8A82] text-sm focus:outline-none focus:border-[#C9A84C] transition-colors"
+                className="w-full px-4 py-3 bg-[color:var(--ww-bg)] border border-[color:var(--ww-border)] rounded text-[color:var(--ww-text)] placeholder:text-[color:var(--ww-muted)] text-sm focus:outline-none focus:border-[color:var(--ww-gold)] transition-colors"
               />
               {errors.email && (
                 <p className="text-red-400 text-xs mt-1 text-left">

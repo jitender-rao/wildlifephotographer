@@ -32,7 +32,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#2A2A2A] bg-[#0A0A0A]">
+    <footer className="border-t border-[color:var(--ww-border)] bg-[color:var(--ww-bg)]">
       <div className="container-wide py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand column */}
@@ -43,8 +43,10 @@ export default function Footer() {
             >
               Wild Wanderings
             </p>
-            <p className="text-caption text-[#C9A84C] mb-4">by Sudiip</p>
-            <p className="text-sm text-[#8A8A82] max-w-xs leading-relaxed">
+            <p className="text-caption text-[color:var(--ww-gold)] mb-4">
+              by Sudiip
+            </p>
+            <p className="text-sm text-[color:var(--ww-muted)] max-w-xs leading-relaxed">
               From the tiger reserves of Ranthambore to the bird sanctuaries of
               Sattal — bringing India&apos;s wild world to your walls.
             </p>
@@ -53,7 +55,7 @@ export default function Footer() {
                 href="https://instagram.com/wild_wanderings_sudiip"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8A8A82] hover:text-[#C9A84C] transition-colors"
+                className="text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
                 aria-label="Instagram"
               >
                 {/* Instagram icon */}
@@ -77,7 +79,9 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h3 className="text-caption text-[#8A8A82] mb-4">{heading}</h3>
+              <h3 className="text-caption text-[color:var(--ww-muted)] mb-4">
+                {heading}
+              </h3>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.href}>
@@ -86,7 +90,7 @@ export default function Footer() {
                       {...("external" in link && link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="text-sm text-[#F5F5F0]/70 hover:text-[#C9A84C] transition-colors"
+                      className="text-sm text-[color:var(--ww-text)]/70 hover:text-[color:var(--ww-gold)] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -98,7 +102,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-6 border-t border-[#2A2A2A] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8A8A82]">
+        <div className="mt-16 pt-6 border-t border-[color:var(--ww-border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[color:var(--ww-muted)]">
           <p>
             © {new Date().getFullYear()} Wild Wanderings by Sudiip. All rights
             reserved.

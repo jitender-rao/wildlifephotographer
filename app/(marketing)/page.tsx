@@ -32,16 +32,18 @@ export default async function HomePage() {
       <FeaturedGallery photos={featuredPhotos} />
 
       {/* Print CTA Banner */}
-      <section className="relative section-padding overflow-hidden bg-[#0A0A0A] border-t border-[#2A2A2A]">
+      <section className="relative section-padding overflow-hidden bg-[color:var(--ww-bg)] border-t border-[color:var(--ww-border)]">
         <div className="container-wide text-center">
-          <p className="text-caption text-[#C9A84C] mb-3">Fine Art Prints</p>
+          <p className="text-caption text-[color:var(--ww-gold)] mb-3">
+            Fine Art Prints
+          </p>
           <h2
-            className="heading-section text-[#F5F5F0] mb-4 max-w-2xl mx-auto"
+            className="heading-section text-[color:var(--ww-text)] mb-4 max-w-2xl mx-auto"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Own a piece of the wild
           </h2>
-          <p className="text-[#8A8A82] max-w-md mx-auto mb-8">
+          <p className="text-[color:var(--ww-muted)] max-w-md mx-auto mb-8">
             Museum-quality giclée prints on fine art paper. Each image
             hand-reviewed and certified. Limited and open editions available.
           </p>
@@ -52,13 +54,15 @@ export default async function HomePage() {
       </section>
 
       {/* Tours Teaser — placeholder until Sanity is live */}
-      <section className="section-padding bg-[#141414] border-t border-[#2A2A2A]">
+      <section className="section-padding bg-[color:var(--ww-surface)] border-t border-[color:var(--ww-border)]">
         <div className="container-wide">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="text-caption text-[#C9A84C] mb-2">Wildlife Tours</p>
+              <p className="text-caption text-[color:var(--ww-gold)] mb-2">
+                Wildlife Tours
+              </p>
               <h2
-                className="heading-section text-[#F5F5F0]"
+                className="heading-section text-[color:var(--ww-text)]"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 Join Sudiip in the Field
@@ -66,7 +70,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/tours"
-              className="hidden sm:inline text-sm text-[#8A8A82] hover:text-[#C9A84C] transition-colors"
+              className="hidden sm:inline text-sm text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
             >
               All tours →
             </Link>
@@ -79,14 +83,14 @@ export default async function HomePage() {
               "Snow Leopard Expedition",
             ].map((name) => (
               <div key={name} className="card-surface p-6 flex flex-col gap-3">
-                <div className="aspect-photo bg-[#2A2A2A] rounded-sm animate-pulse" />
+                <div className="aspect-photo bg-[color:var(--ww-border)] rounded-sm animate-pulse" />
                 <p
-                  className="font-semibold text-[#F5F5F0]"
+                  className="font-semibold text-[color:var(--ww-text)]"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {name}
                 </p>
-                <p className="text-caption text-[#C9A84C] text-[10px]">
+                <p className="text-caption text-[color:var(--ww-gold)] text-[10px]">
                   Coming soon via Sanity CMS
                 </p>
               </div>

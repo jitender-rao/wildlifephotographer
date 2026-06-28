@@ -41,18 +41,18 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
 export default function StatsBar() {
   return (
-    <section className="border-y border-[#2A2A2A] bg-[#141414]">
+    <section className="border-y border-[color:var(--ww-border)] bg-[color:var(--ww-surface)]">
       <div className="container-wide py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <p
-                className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-1"
+                className="text-3xl md:text-4xl font-bold text-[color:var(--ww-gold)] mb-1"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 <Counter target={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-caption text-[#8A8A82] text-[10px] md:text-xs">
+              <p className="text-caption text-[color:var(--ww-muted)] text-[10px] md:text-xs">
                 {stat.label}
               </p>
             </div>

@@ -69,14 +69,16 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
       : PLACEHOLDER_PHOTOS.map((p) => ({ ...p, slug: undefined }));
 
   return (
-    <section className="section-padding bg-[#0A0A0A]">
+    <section className="section-padding bg-[color:var(--ww-bg)]">
       <div className="container-wide">
         {/* Heading */}
         <div className="flex items-end justify-between mb-10">
           <div>
-            <p className="text-caption text-[#C9A84C] mb-2">Featured Work</p>
+            <p className="text-caption text-[color:var(--ww-gold)] mb-2">
+              Featured Work
+            </p>
             <h2
-              className="heading-section text-[#F5F5F0]"
+              className="heading-section text-[color:var(--ww-text)]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Through the Lens
@@ -84,7 +86,7 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
           </div>
           <Link
             href="/portfolio"
-            className="hidden sm:inline text-sm text-[#8A8A82] hover:text-[#C9A84C] transition-colors"
+            className="hidden sm:inline text-sm text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
           >
             View all →
           </Link>
@@ -95,7 +97,7 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
           {items.map((item, i) => (
             <motion.div
               key={item.id}
-              className="group relative aspect-photo overflow-hidden rounded-sm bg-[#141414]"
+              className="group relative aspect-photo overflow-hidden rounded-sm bg-[color:var(--ww-surface)]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -109,14 +111,14 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--ww-bg)]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <p
-                  className="text-[#F5F5F0] font-semibold text-sm"
+                  className="text-[color:var(--ww-text)] font-semibold text-sm"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {item.title}
                 </p>
-                <p className="text-caption text-[#C9A84C] text-[10px] mt-0.5">
+                <p className="text-caption text-[color:var(--ww-gold)] text-[10px] mt-0.5">
                   {item.location}
                 </p>
               </div>

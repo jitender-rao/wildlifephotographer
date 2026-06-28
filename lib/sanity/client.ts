@@ -1,8 +1,13 @@
 import { createClient } from "@sanity/client";
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
+
+export const SANITY_CONFIGURED = Boolean(projectId);
+
 const config = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  projectId: projectId ?? "placeholder",
+  dataset,
   apiVersion: "2024-01-01",
 };
 

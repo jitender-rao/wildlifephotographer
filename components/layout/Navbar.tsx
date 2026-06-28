@@ -22,7 +22,7 @@ export default function Navbar() {
         >
           Wild Wanderings
         </span>
-        <span className="text-caption text-[10px] text-[#C9A84C] hidden sm:block">
+        <span className="text-caption text-[10px] text-[color:var(--ww-gold)] hidden sm:block">
           by Sudiip
         </span>
       </Link>

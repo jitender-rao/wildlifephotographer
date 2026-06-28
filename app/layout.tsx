@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { playfair, inter, spaceMono } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -56,13 +57,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${spaceMono.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${spaceMono.variable} dark`}
       suppressHydrationWarning
     >
       <body>
-        {children}
-        <Toaster richColors theme="dark" position="bottom-right" />
-        <Analytics />
+        <ThemeProvider>
+          {children}
+          <Toaster richColors theme="system" position="bottom-right" />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
