@@ -21,7 +21,7 @@ export function CertificatePreview({
 
   return (
     <div
-      className="relative border border-[color:var(--ww-border)] rounded-lg p-6 overflow-hidden"
+      className="relative border border-[color:var(--ww-border)] p-6 overflow-hidden"
       style={{ background: "var(--ww-surface)" }}
     >
       {/* Corner ornaments */}
