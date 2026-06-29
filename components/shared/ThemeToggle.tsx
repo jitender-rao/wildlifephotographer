@@ -10,13 +10,13 @@ interface ThemeToggleProps {
 }
 
 function getStoredTheme(): "dark" | "light" {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored === "light") return "light";
     if (stored === "dark") return "dark";
   } catch {}
-  return "dark";
+  return "light";
 }
 
 function applyTheme(theme: "dark" | "light") {
@@ -35,7 +35,7 @@ function applyTheme(theme: "dark" | "light") {
 
 export function ThemeToggle({ className, variant = "icon" }: ThemeToggleProps) {
   const [theme, setThemeState] = useState<"dark" | "light">(() =>
-    typeof window === "undefined" ? "dark" : getStoredTheme(),
+    typeof window === "undefined" ? "light" : getStoredTheme(),
   );
   const [mounted, setMounted] = useState(false);
 

@@ -1,108 +1,124 @@
 import type { Metadata } from "next";
-import HeroSection from "@/components/home/HeroSection";
-import StatsBar from "@/components/home/StatsBar";
-import FeaturedGallery from "@/components/home/FeaturedGallery";
-import NewsletterSection from "@/components/home/NewsletterSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Link from "next/link";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturedGallery from "@/components/home/FeaturedGallery";
+import AboutSplit from "@/components/home/AboutSplit";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: "Wild Wanderings by Sudiip | Wildlife Photography India",
   description:
-    "Award-winning wildlife photography from the tiger reserves and bird sanctuaries of India. Fine art prints, wildlife photography tours, and workshops by Sudiip.",
+    "Fine art wildlife prints and guided photography expeditions from the tiger reserves and bird sanctuaries of India. By Sudiip.",
 };
 
 export default async function HomePage() {
-  // Sanity data fetching is temporarily disabled until project ID is configured.
-  // Replace the empty arrays with real queries once NEXT_PUBLIC_SANITY_PROJECT_ID is set:
-  //
-  //   import { getFeaturedPhotos, getTours } from '@/lib/sanity/queries'
-  //   const [featuredPhotos, featuredTours] = await Promise.all([
-  //     getFeaturedPhotos(6),
-  //     getTours({ featured: true }),
-  //   ])
-
   const featuredPhotos: never[] = [];
-  const featuredTours: never[] = [];
-  void featuredTours; // will be used in ToursTeaser section
 
   return (
     <>
+      {/* 1. Hero — full-bleed, minimal copy */}
       <HeroSection />
-      <StatsBar />
-      <FeaturedGallery photos={featuredPhotos} />
 
-      {/* Print CTA Banner */}
-      <section className="relative section-padding overflow-hidden bg-[color:var(--ww-bg)] border-t border-[color:var(--ww-border)]">
-        <div className="container-wide text-center">
-          <p className="text-caption text-[color:var(--ww-gold)] mb-3">
-            Fine Art Prints
-          </p>
-          <h2
-            className="heading-section text-[color:var(--ww-text)] mb-4 max-w-2xl mx-auto"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Own a piece of the wild
-          </h2>
-          <p className="text-[color:var(--ww-muted)] max-w-md mx-auto mb-8">
-            Museum-quality giclée prints on fine art paper. Each image
-            hand-reviewed and certified. Limited and open editions available.
-          </p>
-          <Link href="/shop" className="btn-gold text-sm px-10 py-4">
-            Shop Prints
-          </Link>
-        </div>
-      </section>
-
-      <TestimonialsSection />
-
-      {/* Tours Teaser — placeholder until Sanity is live */}
-      <section className="section-padding bg-[color:var(--ww-surface)] border-t border-[color:var(--ww-border)]">
+      {/* 2. Core pillars — what Sudiip offers (Vantara "Core Initiatives") */}
+      <section className="section-padding-sm bg-[color:var(--ww-surface)] border-b border-[color:var(--ww-border)]">
         <div className="container-wide">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="text-caption text-[color:var(--ww-gold)] mb-2">
-                Wildlife Tours
-              </p>
-              <h2
-                className="heading-section text-[color:var(--ww-text)]"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Join Sudiip in the Field
-              </h2>
-            </div>
-            <Link
-              href="/tours"
-              className="hidden sm:inline text-sm text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
-            >
-              All tours →
-            </Link>
-          </div>
-          {/* Tour cards will be populated from Sanity */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--ww-border)]">
             {[
-              "Ranthambore Tiger Safari",
-              "Sattal Bird Photography",
-              "Snow Leopard Expedition",
-            ].map((name) => (
-              <div key={name} className="card-surface p-6 flex flex-col gap-3">
-                <div className="aspect-photo bg-[color:var(--ww-border)] rounded-sm animate-pulse" />
-                <p
-                  className="font-semibold text-[color:var(--ww-text)]"
-                  style={{ fontFamily: "var(--font-playfair)" }}
+              { icon: "◈", label: "Fine Art Prints", href: "/shop" },
+              { icon: "◎", label: "Wildlife Tours", href: "/contact" },
+              { icon: "◐", label: "Workshops", href: "/contact" },
+              { icon: "◉", label: "Portfolio", href: "/portfolio" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group bg-[color:var(--ww-surface)] flex flex-col items-center gap-3 py-10 px-6 text-center hover:bg-[color:var(--ww-surface-alt)] transition-colors"
+              >
+                <span className="text-2xl text-[color:var(--ww-gold)] group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </span>
+                <span
+                  className="text-sm font-medium text-[color:var(--ww-text)]"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  {name}
-                </p>
-                <p className="text-caption text-[color:var(--ww-gold)] text-[10px]">
-                  Coming soon via Sanity CMS
-                </p>
-              </div>
+                  {item.label}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <NewsletterSection />
+      {/* 3. Featured gallery — 3 images, large */}
+      <FeaturedGallery photos={featuredPhotos} />
+
+      {/* 4. About split — "Where Healing Begins" equivalent */}
+      <AboutSplit />
+
+      {/* 5. Print CTA — full-bleed dark section (Vantara "Get in Touch" pattern) */}
+      <section
+        className="relative py-28 md:py-36 overflow-hidden"
+        style={{ backgroundColor: "var(--ww-dark-bg)" }}
+      >
+        {/* Subtle texture overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px)",
+          }}
+        />
+        <div className="container-narrow relative text-center">
+          <p className="text-eyebrow text-[color:var(--ww-gold-light)] mb-5">
+            Fine Art Prints
+          </p>
+          <h2
+            className="heading-section mb-5"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--ww-dark-text)",
+            }}
+          >
+            Own a piece of the wild
+          </h2>
+          <p
+            className="text-base mb-10 font-light"
+            style={{ color: "rgba(240,235,227,0.6)" }}
+          >
+            Museum-quality giclée on Hahnemühle fine art paper. Limited
+            editions, hand-certified.
+          </p>
+          <Link href="/shop" className="btn-gold">
+            Shop Prints
+          </Link>
+        </div>
+      </section>
+
+      {/* 6. Testimonials — single-card carousel */}
+      <TestimonialsSection />
+
+      {/* 7. Join the Journey — simple strip CTA */}
+      <section className="section-padding-sm bg-[color:var(--ww-surface-alt)] border-t border-[color:var(--ww-border)]">
+        <div className="container-narrow text-center">
+          <h2
+            className="heading-section text-[color:var(--ww-text)] mb-4"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Ready to join Sudiip in the field?
+          </h2>
+          <p className="text-[color:var(--ww-muted)] text-sm mb-8">
+            Tours, workshops, and bespoke expeditions — enquire via WhatsApp.
+          </p>
+          <Link
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919000000000"}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold"
+          >
+            WhatsApp Sudiip
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

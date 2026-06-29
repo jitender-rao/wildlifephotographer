@@ -5,64 +5,72 @@
 
 /* ── Light theme (default) ────────────────────────────────────────────── */
 :root {
-  --ww-bg: #fafaf8;
-  --ww-surface: #f2f1eb;
-  --ww-border: #d8d6cc;
-  --ww-text: #1a1a18;
-  --ww-muted: #6a6960;
-  --ww-gold: #b8922a;
+  --ww-bg: #f8f5f0;
+  --ww-surface: #ffffff;
+  --ww-surface-alt: #f2ede6;
+  --ww-border: #e5ddd2;
+  --ww-text: #1c1814;
+  --ww-muted: #7a7268;
+  --ww-gold: #9a7b3a;
   --ww-gold-light: #c9a84c;
-  --ww-gold-dim: rgba(184, 146, 42, 0.15);
+  --ww-gold-dim: rgba(154, 123, 58, 0.12);
+  --ww-dark-bg: #0a0a0a;
+  --ww-dark-surface: #141414;
+  --ww-dark-text: #f5f5f0;
 
-  --background: #fafaf8;
-  --foreground: #1a1a18;
-  --card: #f2f1eb;
-  --card-foreground: #1a1a18;
-  --popover: #f2f1eb;
-  --popover-foreground: #1a1a18;
-  --primary: #b8922a;
-  --primary-foreground: #fafaf8;
-  --secondary: #e8e6de;
-  --secondary-foreground: #1a1a18;
-  --muted: #e8e6de;
-  --muted-foreground: #6a6960;
-  --accent: #e8e6de;
-  --accent-foreground: #1a1a18;
+  --background: #f8f5f0;
+  --foreground: #1c1814;
+  --card: #ffffff;
+  --card-foreground: #1c1814;
+  --popover: #ffffff;
+  --popover-foreground: #1c1814;
+  --primary: #9a7b3a;
+  --primary-foreground: #ffffff;
+  --secondary: #ede8e0;
+  --secondary-foreground: #1c1814;
+  --muted: #ede8e0;
+  --muted-foreground: #7a7268;
+  --accent: #ede8e0;
+  --accent-foreground: #1c1814;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #d8d6cc;
-  --input: #e8e6de;
-  --ring: #b8922a;
-  --radius: 0.5rem;
+  --border: #e5ddd2;
+  --input: #ede8e0;
+  --ring: #9a7b3a;
+  --radius: 0.25rem;
 }
 
 /* ── Dark theme ───────────────────────────────────────────────────────── */
 .dark {
-  --ww-bg: #0a0a0a;
-  --ww-surface: #141414;
-  --ww-border: #2a2a2a;
-  --ww-text: #f5f5f0;
-  --ww-muted: #8a8a82;
+  --ww-bg: #0f0d0a;
+  --ww-surface: #1a1612;
+  --ww-surface-alt: #231e18;
+  --ww-border: #2e2820;
+  --ww-text: #f0ebe3;
+  --ww-muted: #8a8278;
   --ww-gold: #c9a84c;
   --ww-gold-light: #e8c97a;
   --ww-gold-dim: rgba(201, 168, 76, 0.15);
+  --ww-dark-bg: #0f0d0a;
+  --ww-dark-surface: #1a1612;
+  --ww-dark-text: #f0ebe3;
 
-  --background: #0a0a0a;
-  --foreground: #f5f5f0;
-  --card: #141414;
-  --card-foreground: #f5f5f0;
-  --popover: #141414;
-  --popover-foreground: #f5f5f0;
+  --background: #0f0d0a;
+  --foreground: #f0ebe3;
+  --card: #1a1612;
+  --card-foreground: #f0ebe3;
+  --popover: #1a1612;
+  --popover-foreground: #f0ebe3;
   --primary: #c9a84c;
-  --primary-foreground: #0a0a0a;
-  --secondary: #1e1e1e;
-  --secondary-foreground: #f5f5f0;
-  --muted: #1e1e1e;
-  --muted-foreground: #8a8a82;
-  --accent: #2a2a2a;
-  --accent-foreground: #f5f5f0;
+  --primary-foreground: #0f0d0a;
+  --secondary: #231e18;
+  --secondary-foreground: #f0ebe3;
+  --muted: #231e18;
+  --muted-foreground: #8a8278;
+  --accent: #2e2820;
+  --accent-foreground: #f0ebe3;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #2a2a2a;
-  --input: #1e1e1e;
+  --border: #2e2820;
+  --input: #231e18;
   --ring: #c9a84c;
 }
 
@@ -175,47 +183,59 @@
 
 @layer components {
   .container-wide {
-    @apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12;
   }
   .container-narrow {
-    @apply max-w-4xl mx-auto px-4 sm:px-6;
+    @apply max-w-3xl mx-auto px-5 sm:px-8;
   }
+  /* Generous section breathing room — Vantara principle */
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-20 md:py-28 lg:py-36;
+  }
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
   }
 
+  /* Display: reserved for hero only */
   .heading-display {
     font-family: var(--font-display);
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight;
   }
+  /* Section headings: concise, confident */
   .heading-section {
     font-family: var(--font-display);
-    @apply text-3xl md:text-4xl font-semibold leading-tight;
+    @apply text-2xl md:text-3xl font-semibold leading-snug;
   }
+  /* Eyebrow labels */
+  .text-eyebrow {
+    font-family: var(--font-mono);
+    @apply text-[10px] tracking-[0.2em] uppercase;
+    color: var(--ww-gold);
+  }
+  /* Legacy alias */
   .text-caption {
     font-family: var(--font-mono);
     @apply text-xs tracking-widest uppercase;
   }
 
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      var(--ww-gold),
-      var(--ww-gold-light)
-    );
-  }
-
+  /* Cards */
   .card-surface {
     background-color: var(--ww-surface);
     border: 1px solid var(--ww-border);
-    @apply rounded-lg;
+    @apply rounded-sm;
+  }
+  .card-surface-alt {
+    background-color: var(--ww-surface-alt);
+    border: 1px solid var(--ww-border);
+    @apply rounded-sm;
   }
 
+  /* Buttons — sharp edges, intentional (not pill/AI-round) */
   .btn-gold {
     background-color: var(--ww-gold);
-    color: var(--background);
-    @apply font-medium px-6 py-3 rounded transition-colors;
+    color: #ffffff;
+    @apply inline-flex items-center font-medium px-7 py-3 text-sm tracking-wide transition-all duration-200;
+    border-radius: 2px;
   }
   .btn-gold:hover {
     background-color: var(--ww-gold-light);
@@ -224,11 +244,23 @@
   .btn-outline-gold {
     border: 1px solid var(--ww-gold);
     color: var(--ww-gold);
-    @apply font-medium px-6 py-3 rounded transition-colors;
+    @apply inline-flex items-center font-medium px-7 py-3 text-sm tracking-wide transition-all duration-200;
+    border-radius: 2px;
   }
   .btn-outline-gold:hover {
     background-color: var(--ww-gold);
-    color: var(--background);
+    color: #ffffff;
+  }
+
+  /* Ghost button for dark sections */
+  .btn-ghost-light {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    @apply inline-flex items-center font-medium px-7 py-3 text-sm tracking-wide transition-all duration-200;
+    border-radius: 2px;
+  }
+  .btn-ghost-light:hover {
+    background-color: rgba(255, 255, 255, 0.12);
   }
 
   .aspect-photo {
@@ -237,9 +269,18 @@
   .aspect-portrait {
     aspect-ratio: 2 / 3;
   }
+  .aspect-landscape {
+    aspect-ratio: 16 / 9;
+  }
 
   .skeleton {
-    background-color: var(--ww-surface);
-    @apply rounded animate-pulse;
+    background-color: var(--ww-surface-alt);
+    @apply rounded-sm animate-pulse;
+  }
+
+  /* Dark section override — used for hero, CTA strips */
+  .section-dark {
+    background-color: var(--ww-dark-bg);
+    color: var(--ww-dark-text);
   }
 }

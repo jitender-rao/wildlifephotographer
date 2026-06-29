@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
+  themeColor: "#F8F5F0",
   width: "device-width",
   initialScale: 1,
 };
@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${spaceMono.variable} dark`}
+      className={`${playfair.variable} ${inter.variable} ${spaceMono.variable}`}
       suppressHydrationWarning
     >
       <body>
