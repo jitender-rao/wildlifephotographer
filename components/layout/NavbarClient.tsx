@@ -49,7 +49,7 @@ export default function NavbarClient({
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
           scrolled
             ? "bg-[color:var(--ww-surface)]/95 backdrop-blur-md border-b border-[color:var(--ww-border)] shadow-sm"
-            : "bg-transparent",
+            : "bg-gradient-to-b from-black/40 to-transparent",
         )}
       >
         <nav className="container-wide flex items-center justify-between h-16 md:h-18">
