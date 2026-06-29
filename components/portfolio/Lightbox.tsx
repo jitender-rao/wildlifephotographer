@@ -7,8 +7,6 @@ import Link from "next/link";
 import { X, ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
 import { useUIStore } from "@/store/uiStore";
 import { PLACEHOLDER_PHOTOS } from "@/lib/placeholder-photos";
-import { PhotoMetadata } from "./PhotoMetadata";
-import { cn } from "@/lib/utils";
 
 export function Lightbox() {
   const {
@@ -38,7 +36,6 @@ export function Lightbox() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  // Body scroll lock
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = "hidden";
@@ -54,8 +51,6 @@ export function Lightbox() {
 
   const currentIdx = lightboxPhotos.indexOf(photo.id);
   const total = lightboxPhotos.length;
-  const hasPrev = total > 1;
-  const hasNext = total > 1;
 
   return createPortal(
     <div
@@ -66,15 +61,15 @@ export function Lightbox() {
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/95 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/92 backdrop-blur-sm"
         onClick={closeLightbox}
       />
 
-      {/* Panel */}
-      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row max-w-[1400px] mx-auto p-4 lg:p-8 gap-4 lg:gap-8">
-        {/* Image area */}
+      {/* Layout */}
+      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row max-w-[1400px] mx-auto p-4 lg:p-10 gap-6 lg:gap-10">
+        {/* Image */}
         <div className="relative flex-1 min-h-0 flex items-center justify-center">
-          <div className="relative w-full h-full max-h-[70vh] lg:max-h-full">
+          <div className="relative w-full h-full max-h-[72vh] lg:max-h-full">
             <Image
               src={photo.src}
               alt={photo.title}
@@ -86,39 +81,65 @@ export function Lightbox() {
           </div>
         </div>
 
-        {/* Sidebar metadata */}
-        <aside className="lg:w-72 xl:w-80 flex-shrink-0 flex flex-col justify-center gap-6 py-4">
+        {/* Sidebar — minimal */}
+        <aside className="lg:w-64 xl:w-72 flex-shrink-0 flex flex-col justify-center gap-5 py-2">
           <div>
             <h2
-              className="text-[color:var(--ww-text)] text-2xl font-semibold leading-tight mb-3"
+              className="text-white text-xl font-semibold leading-tight mb-2"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {photo.title}
             </h2>
-            <PhotoMetadata
-              location={photo.location}
-              dateCaptured={photo.dateCaptured}
-              exif={photo.exif}
-            />
+            <p
+              className="text-white/50 text-[10px] uppercase tracking-widest"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {photo.location}
+            </p>
           </div>
+
+          <div className="h-px bg-white/10" />
+
+          {/* Key EXIF only — camera + lens */}
+          {(photo.exif?.camera || photo.exif?.lens) && (
+            <div className="space-y-1">
+              {photo.exif.camera && (
+                <p
+                  className="text-white/40 text-[10px]"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {photo.exif.camera}
+                </p>
+              )}
+              {photo.exif.lens && (
+                <p
+                  className="text-white/40 text-[10px]"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {photo.exif.lens}
+                </p>
+              )}
+            </div>
+          )}
 
           {photo.availableAsPrint && (
             <Link
               href={`/shop/${photo.slug}`}
-              className="btn-gold inline-flex items-center gap-2 text-sm w-fit"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/30 px-4 py-2.5 hover:bg-white/10 transition-colors"
+              style={{ borderRadius: "2px" }}
               onClick={closeLightbox}
             >
-              <ShoppingBag size={16} />
+              <ShoppingBag size={14} />
               Shop This Print
             </Link>
           )}
 
           {total > 1 && (
             <p
-              className="text-[color:var(--ww-muted)] text-xs"
+              className="text-white/30 text-[10px]"
               style={{
                 fontFamily: "var(--font-mono)",
-                letterSpacing: "0.06em",
+                letterSpacing: "0.08em",
               }}
             >
               {currentIdx + 1} / {total}
@@ -127,41 +148,32 @@ export function Lightbox() {
         </aside>
       </div>
 
-      {/* Close */}
+      {/* Controls */}
       <button
         onClick={closeLightbox}
-        className="absolute top-4 right-4 z-20 p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-        aria-label="Close lightbox"
+        className="absolute top-4 right-4 z-20 p-2 text-white/50 hover:text-white transition-colors"
+        aria-label="Close"
       >
-        <X size={24} />
+        <X size={22} />
       </button>
 
-      {/* Prev */}
-      {hasPrev && (
-        <button
-          onClick={lightboxPrev}
-          className={cn(
-            "absolute left-4 top-1/2 -translate-y-1/2 z-20",
-            "p-3 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors",
-          )}
-          aria-label="Previous photo"
-        >
-          <ChevronLeft size={28} />
-        </button>
-      )}
-
-      {/* Next */}
-      {hasNext && (
-        <button
-          onClick={lightboxNext}
-          className={cn(
-            "absolute right-4 lg:right-[calc(288px+2rem)] top-1/2 -translate-y-1/2 z-20",
-            "p-3 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors",
-          )}
-          aria-label="Next photo"
-        >
-          <ChevronRight size={28} />
-        </button>
+      {total > 1 && (
+        <>
+          <button
+            onClick={lightboxPrev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-3 text-white/50 hover:text-white transition-colors"
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={26} />
+          </button>
+          <button
+            onClick={lightboxNext}
+            className="absolute right-3 lg:right-[calc(272px+2.5rem)] top-1/2 -translate-y-1/2 z-20 p-3 text-white/50 hover:text-white transition-colors"
+            aria-label="Next photo"
+          >
+            <ChevronRight size={26} />
+          </button>
+        </>
       )}
     </div>,
     document.body,

@@ -24,7 +24,7 @@ export function CategoryFilter() {
 
   return (
     <div
-      className="flex flex-wrap gap-2"
+      className="flex flex-wrap gap-x-6 gap-y-2"
       role="tablist"
       aria-label="Filter by category"
     >
@@ -37,11 +37,11 @@ export function CategoryFilter() {
             aria-selected={isActive}
             onClick={() => select(cat.value)}
             className={cn(
-              "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200",
-              "border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ww-gold)]",
+              "text-sm pb-1.5 transition-all duration-200 focus-visible:outline-none",
+              "border-b-2",
               isActive
-                ? "bg-[color:var(--ww-gold)] border-[color:var(--ww-gold)] text-[color:var(--ww-bg)]"
-                : "border-[color:var(--ww-border)] text-[color:var(--ww-muted)] hover:border-[color:var(--ww-gold)] hover:text-[color:var(--ww-gold)]",
+                ? "text-[color:var(--ww-text)] border-[color:var(--ww-gold)] font-medium"
+                : "text-[color:var(--ww-muted)] border-transparent hover:text-[color:var(--ww-text)] hover:border-[color:var(--ww-border)]",
             )}
           >
             {cat.label}

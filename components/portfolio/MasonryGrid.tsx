@@ -12,27 +12,25 @@ export function MasonryGrid({ photos }: MasonryGridProps) {
 
   if (photos.length === 0) {
     return (
-      <div className="py-24 text-center">
+      <div className="py-32 text-center">
         <p
-          className="text-[color:var(--ww-muted)]"
-          style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.05em" }}
+          className="text-[color:var(--ww-muted)] text-sm"
+          style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em" }}
         >
-          No photos in this category yet.
+          No photographs in this category yet.
         </p>
       </div>
     );
   }
 
-  // Split photos into 3 columns for masonry layout
+  // Distribute into 3 columns
   const cols: PlaceholderPhoto[][] = [[], [], []];
-  photos.forEach((photo, i) => {
-    cols[i % 3].push(photo);
-  });
+  photos.forEach((photo, i) => cols[i % 3].push(photo));
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
       {cols.map((col, colIdx) => (
-        <div key={colIdx} className="flex flex-col gap-3 md:gap-4">
+        <div key={colIdx} className="flex flex-col gap-2 md:gap-3">
           {col.map((photo, rowIdx) => (
             <PhotoCard
               key={photo.id}
