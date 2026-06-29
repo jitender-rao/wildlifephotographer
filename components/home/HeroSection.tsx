@@ -3,8 +3,11 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-screen min-h-[560px] max-h-[900px] overflow-hidden">
-      {/* Background image */}
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: "100dvh", minHeight: "560px" }}
+    >
+      {/* Background image — fills entire viewport */}
       <Image
         src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=1800&q=85"
         alt="Bengal tiger in Ranthambore — Wild Wanderings by Sudiip"
@@ -14,10 +17,13 @@ export default function HeroSection() {
         sizes="100vw"
       />
 
-      {/* Dark gradient overlay — bottom-weighted so text is readable */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+      {/* Top vignette — so navbar text stays legible over any image */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
 
-      {/* Content */}
+      {/* Bottom text layer — strong enough to read, doesn't grey the whole image */}
+      <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+
+      {/* Content — pinned to bottom */}
       <div className="absolute inset-0 flex flex-col justify-end pb-16 md:pb-24">
         <div className="container-wide">
           <p className="text-eyebrow text-[color:var(--ww-gold-light)] mb-4">
@@ -31,7 +37,7 @@ export default function HeroSection() {
             <br />
             Through His Lens
           </h1>
-          <p className="text-white/70 text-base md:text-lg max-w-md mb-8 leading-relaxed font-light">
+          <p className="text-white/75 text-base md:text-lg max-w-md mb-8 leading-relaxed font-light">
             Fine art prints and guided wildlife expeditions from the tiger
             reserves and bird sanctuaries of India.
           </p>
