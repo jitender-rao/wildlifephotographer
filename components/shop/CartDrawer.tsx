@@ -119,7 +119,10 @@ export function CartDrawer() {
               {items.map((item) => (
                 <li key={item.sku} className="flex gap-4 px-6 py-5">
                   {/* Thumbnail */}
-                  <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-[color:var(--ww-surface)]">
+                  <div
+                    className="relative w-20 h-20 flex-shrink-0 overflow-hidden bg-[color:var(--ww-surface)]"
+                    style={{ borderRadius: "2px" }}
+                  >
                     <Image
                       src={item.imageUrl}
                       alt={item.photoTitle}

@@ -108,7 +108,7 @@ export function ProductSelector({ print }: ProductSelectorProps) {
                 key={size.id}
                 onClick={() => setSelectedSizeId(size.id)}
                 className={cn(
-                  "relative flex flex-col items-start px-3 py-2.5 rounded-lg border text-left transition-all duration-150",
+                  "relative flex flex-col items-start px-3 py-2.5 border text-left transition-all duration-150",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ww-gold)]",
                   isActive
                     ? "border-[color:var(--ww-gold)] bg-[color:var(--ww-gold)]/8"
@@ -176,7 +176,7 @@ export function ProductSelector({ print }: ProductSelectorProps) {
                 key={m.id}
                 onClick={() => setSelectedMedium(m.id)}
                 className={cn(
-                  "w-full flex items-start gap-3 px-4 py-3 rounded-lg border text-left transition-all duration-150",
+                  "w-full flex items-start gap-3 px-4 py-3 border text-left transition-all duration-150",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ww-gold)]",
                   isActive
                     ? "border-[color:var(--ww-gold)] bg-[color:var(--ww-gold)]/8"
@@ -239,10 +239,11 @@ export function ProductSelector({ print }: ProductSelectorProps) {
           href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Sudiip, I'm interested in a Statement (48×32") print of "${print.title}". Could you help with pricing and shipping?`)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 py-4 rounded-lg font-medium text-sm transition-colors"
+          className="w-full flex items-center justify-center gap-2 py-4 font-medium text-sm transition-colors"
           style={{
             background: "#25D366",
             color: "white",
+            borderRadius: "2px",
           }}
         >
           <MessageCircle size={18} />
@@ -253,7 +254,7 @@ export function ProductSelector({ print }: ProductSelectorProps) {
           onClick={handleAddToCart}
           disabled={soldOut}
           className={cn(
-            "w-full flex items-center justify-center gap-2 py-4 rounded-lg font-medium text-sm transition-all duration-200",
+            "w-full flex items-center justify-center gap-2 py-4 font-medium text-sm transition-all duration-200",
             added
               ? "bg-emerald-600 text-white"
               : soldOut
