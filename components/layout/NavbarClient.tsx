@@ -71,11 +71,14 @@ export default function NavbarClient({
                 <Link
                   href={link.href}
                   className={cn(
-                    "text-sm tracking-wide transition-colors hover:text-[color:var(--ww-gold)]",
-                    !scrolled && "text-white/90 hover:text-white",
-                    scrolled && isActive(link.href)
-                      ? "text-[color:var(--ww-gold)]"
-                      : "text-[color:var(--ww-text)]/80",
+                    "text-sm tracking-wide transition-colors",
+                    !scrolled
+                      ? isActive(link.href)
+                        ? "text-white"
+                        : "text-white/80 hover:text-white"
+                      : isActive(link.href)
+                        ? "text-[color:var(--ww-gold)]"
+                        : "text-[color:var(--ww-text)] hover:text-[color:var(--ww-gold)]",
                   )}
                 >
                   {link.label}
@@ -141,7 +144,7 @@ export default function NavbarClient({
                     ? "text-[color:var(--ww-gold)]"
                     : "text-[color:var(--ww-text)]",
                 )}
-                style={{ fontFamily: "var(--font-playfair)" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {link.label}
               </Link>
