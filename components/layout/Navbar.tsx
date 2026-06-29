@@ -4,7 +4,6 @@ import NavbarClient from "./NavbarClient";
 const navLinks = [
   { href: "/portfolio", label: "Portfolio" },
   { href: "/shop", label: "Shop Prints" },
-  { href: "/tours", label: "Tours" },
   { href: "/workshops", label: "Workshops" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
