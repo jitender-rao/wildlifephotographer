@@ -48,7 +48,7 @@ export default function StatsBar() {
             <div key={stat.label} className="text-center">
               <p
                 className="text-3xl md:text-4xl font-bold text-[color:var(--ww-gold)] mb-1"
-                style={{ fontFamily: "var(--font-playfair)" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 <Counter target={stat.value} suffix={stat.suffix} />
               </p>

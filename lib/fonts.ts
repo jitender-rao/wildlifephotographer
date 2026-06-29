@@ -1,21 +1,8 @@
-import { Playfair_Display, Inter, Space_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
-export const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
+// Geist Sans — used for both display headings and body text
+export const geistSans = GeistSans;
 
-export const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-export const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-  display: "swap",
-  weight: ["400", "700"],
-});
+// Geist Mono — used for eyebrows, EXIF data, labels
+export const geistMono = GeistMono;

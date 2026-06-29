@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { playfair, inter, spaceMono } from "@/lib/fonts";
+import { geistSans, geistMono } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${spaceMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <body>
