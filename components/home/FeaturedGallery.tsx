@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import type { PhotoSummary } from "@/types/portfolio";
 import { urlFor } from "@/lib/sanity/image";
 
@@ -10,115 +7,85 @@ interface FeaturedGalleryProps {
   photos: PhotoSummary[];
 }
 
-// Placeholder photos shown when Sanity is not yet configured
-const PLACEHOLDER_PHOTOS = [
+const PLACEHOLDER = [
   {
     id: "1",
     title: "The Ranthambore King",
     location: "Ranthambore, Rajasthan",
     image:
-      "https://images.unsplash.com/photo-1549480017-d76466a4b7e8?w=800&q=80",
+      "https://images.unsplash.com/photo-1549480017-d76466a4b7e8?w=900&q=85",
   },
   {
     id: "2",
     title: "Misty Morning",
     location: "Sattal, Uttarakhand",
     image:
-      "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=80",
+      "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=900&q=85",
   },
   {
     id: "3",
     title: "Silent Stalk",
     location: "Corbett, Uttarakhand",
     image:
-      "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80",
-  },
-  {
-    id: "4",
-    title: "Golden Hour",
-    location: "Kanha, Madhya Pradesh",
-    image:
-      "https://images.unsplash.com/photo-1509428685961-7f14b2f8f4e9?w=800&q=80",
-  },
-  {
-    id: "5",
-    title: "Kingfisher Dive",
-    location: "Bharatpur, Rajasthan",
-    image:
-      "https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?w=800&q=80",
-  },
-  {
-    id: "6",
-    title: "The Watchful Eye",
-    location: "Ranthambore, Rajasthan",
-    image:
-      "https://images.unsplash.com/photo-1503656142023-618e7d1f435a?w=800&q=80",
+      "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=900&q=85",
   },
 ];
 
 export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
   const items =
     photos.length > 0
-      ? photos.map((p) => ({
+      ? photos.slice(0, 3).map((p) => ({
           id: p._id,
           title: p.title,
           location: p.location,
-          image: urlFor(p.image).width(800).height(533).url(),
+          image: urlFor(p.image).width(900).height(600).url(),
           slug: p.slug.current,
         }))
-      : PLACEHOLDER_PHOTOS.map((p) => ({ ...p, slug: undefined }));
+      : PLACEHOLDER.map((p) => ({ ...p, slug: undefined }));
 
   return (
-    <section className="section-padding bg-[color:var(--ww-bg)]">
+    <section className="section-padding bg-[color:var(--ww-surface-alt)]">
       <div className="container-wide">
-        {/* Heading */}
+        {/* Header */}
         <div className="flex items-end justify-between mb-10">
           <div>
-            <p className="text-caption text-[color:var(--ww-gold)] mb-2">
-              Featured Work
-            </p>
+            <p className="text-eyebrow mb-3">Featured Work</p>
             <h2
               className="heading-section text-[color:var(--ww-text)]"
-              style={{ fontFamily: "var(--font-playfair)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Through the Lens
             </h2>
           </div>
           <Link
             href="/portfolio"
-            className="hidden sm:inline text-sm text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 text-sm text-[color:var(--ww-muted)] hover:text-[color:var(--ww-gold)] transition-colors"
           >
-            View all →
+            View all work →
           </Link>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {items.map((item, i) => (
-            <motion.div
+        {/* 3-column grid — large images, breathing room */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {items.map((item) => (
+            <div
               key={item.id}
-              className="group relative aspect-photo overflow-hidden rounded-sm bg-[color:var(--ww-surface)]"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-[color:var(--ww-border)]"
             >
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                sizes="(max-width: 640px) 100vw, 33vw"
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--ww-bg)]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              {/* Minimal bottom label — always visible, not on hover */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3">
+                <p className="text-white text-xs font-medium">{item.title}</p>
                 <p
-                  className="text-[color:var(--ww-text)] font-semibold text-sm"
-                  style={{ fontFamily: "var(--font-playfair)" }}
+                  className="text-white/60 text-[10px] mt-0.5"
+                  style={{ fontFamily: "var(--font-mono)" }}
                 >
-                  {item.title}
-                </p>
-                <p className="text-caption text-[color:var(--ww-gold)] text-[10px] mt-0.5">
                   {item.location}
                 </p>
               </div>
@@ -129,7 +96,7 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
                   aria-label={item.title}
                 />
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
 

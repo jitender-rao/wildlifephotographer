@@ -48,23 +48,32 @@ export default function NavbarClient({
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
           scrolled
-            ? "backdrop-blur-md bg-[color:var(--ww-bg)]/85 border-b border-[color:var(--ww-border)]"
+            ? "bg-[color:var(--ww-surface)]/95 backdrop-blur-md border-b border-[color:var(--ww-border)] shadow-sm"
             : "bg-transparent",
         )}
       >
-        <nav className="container-wide flex items-center justify-between h-16 md:h-20">
+        <nav className="container-wide flex items-center justify-between h-16 md:h-18">
           {/* Logo (server-rendered, passed as children) */}
-          {children}
+          <div
+            className={cn(
+              "transition-colors duration-300",
+              !scrolled &&
+                "text-white [&_span]:text-white [&_span:last-child]:!text-[color:var(--ww-gold-light)]",
+            )}
+          >
+            {children}
+          </div>
 
           {/* Desktop nav links */}
-          <ul className="hidden lg:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   className={cn(
                     "text-sm tracking-wide transition-colors hover:text-[color:var(--ww-gold)]",
-                    isActive(link.href)
+                    !scrolled && "text-white/90 hover:text-white",
+                    scrolled && isActive(link.href)
                       ? "text-[color:var(--ww-gold)]"
                       : "text-[color:var(--ww-text)]/80",
                   )}
@@ -76,19 +85,24 @@ export default function NavbarClient({
           </ul>
 
           {/* Right actions */}
-          <div className="flex items-center gap-1">
+          <div
+            className={cn(
+              "flex items-center gap-1 transition-colors duration-300",
+              !scrolled && "[&_button]:text-white/80 [&_a]:text-white/80",
+            )}
+          >
             {/* Theme toggle */}
             <ThemeToggle />
 
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative p-2 text-[color:var(--ww-text)]/80 hover:text-[color:var(--ww-gold)] transition-colors"
+              className="relative p-2 hover:text-[color:var(--ww-gold)] transition-colors"
               aria-label={`Cart (${itemCount} items)`}
             >
               <ShoppingBag size={20} />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-[color:var(--ww-gold)] text-[color:var(--background)] text-[10px] font-bold rounded-full flex items-center justify-center px-1">
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-[color:var(--ww-gold)] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1">
                   {itemCount > 99 ? "99+" : itemCount}
                 </span>
               )}
@@ -96,7 +110,7 @@ export default function NavbarClient({
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden p-2 text-[color:var(--ww-text)]/80 hover:text-[color:var(--ww-gold)] transition-colors"
+              className="lg:hidden p-2 hover:text-[color:var(--ww-gold)] transition-colors"
               onClick={toggleMobileMenu}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
