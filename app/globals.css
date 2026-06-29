@@ -150,6 +150,7 @@
     background-color: var(--ww-bg);
     color: var(--ww-text);
     color-scheme: dark light;
+    overflow-x: hidden;
   }
 
   body {
@@ -159,6 +160,8 @@
     transition:
       background-color 0.25s ease,
       color 0.25s ease;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   ::selection {
