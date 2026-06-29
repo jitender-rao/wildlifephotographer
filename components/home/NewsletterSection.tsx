@@ -45,7 +45,7 @@ export default function NewsletterSection() {
         </p>
         <h2
           className="heading-section text-[color:var(--ww-text)] mb-4"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Get stories from the jungle
         </h2>
@@ -57,7 +57,7 @@ export default function NewsletterSection() {
         {submitted ? (
           <p
             className="text-[color:var(--ww-gold)] text-lg font-medium"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Welcome to the wild! 🐾 Check your inbox.
           </p>
