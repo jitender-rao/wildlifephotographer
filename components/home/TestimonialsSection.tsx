@@ -118,13 +118,12 @@ function TestimonialCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-      className="relative flex flex-col gap-4 p-6 rounded-lg border border-[color:var(--ww-border)] bg-[color:var(--ww-surface)] break-inside-avoid"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
+      className="relative flex flex-col gap-4 p-6 rounded-lg border border-[color:var(--ww-border)] bg-[color:var(--ww-surface)] break-inside-avoid mb-5"
     >
-      {/* Large quote mark */}
+      {/* Large decorative quote mark */}
       <span
         className="absolute top-4 right-5 text-6xl leading-none text-[color:var(--ww-gold)]/15 select-none pointer-events-none"
         style={{ fontFamily: "var(--font-playfair)" }}
@@ -133,18 +132,14 @@ function TestimonialCard({
         &ldquo;
       </span>
 
-      {/* Rating */}
       <StarRating rating={testimonial.rating} />
 
-      {/* Quote */}
       <p className="text-[color:var(--ww-text)]/85 text-sm leading-relaxed flex-1">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
-      {/* Divider */}
       <div className="h-px bg-gradient-to-r from-[color:var(--ww-gold)]/30 to-transparent" />
 
-      {/* Author */}
       <div className="flex items-start justify-between gap-2">
         <div>
           <p
@@ -179,52 +174,30 @@ export default function TestimonialsSection() {
       <div className="container-wide">
         {/* Header */}
         <div className="text-center mb-14">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-caption text-[color:var(--ww-gold)] mb-3"
-          >
+          <p className="text-caption text-[color:var(--ww-gold)] mb-3">
             From the Field
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          </p>
+          <h2
             className="heading-section text-[color:var(--ww-text)] max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Stories from fellow wanderers
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-[color:var(--ww-muted)] mt-4 max-w-md mx-auto text-sm"
-          >
+          </h2>
+          <p className="text-[color:var(--ww-muted)] mt-4 max-w-md mx-auto text-sm">
             Photographers, nature lovers, and first-timers — united by a shared
             encounter with India&apos;s wild.
-          </motion.p>
+          </p>
         </div>
 
         {/* Masonry grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
           {TESTIMONIALS.map((t, i) => (
             <TestimonialCard key={t.name} testimonial={t} index={i} />
           ))}
         </div>
 
         {/* Trust bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mt-14 flex flex-wrap items-center justify-center gap-8 text-center"
-        >
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-8 text-center">
           {[
             { value: "500+", label: "Photographers mentored" },
             { value: "8+", label: "Years of expeditions" },
@@ -246,7 +219,7 @@ export default function TestimonialsSection() {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
