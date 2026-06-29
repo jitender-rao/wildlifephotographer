@@ -45,26 +45,29 @@ export default async function PrintDetailPage({ params }: PageProps) {
       : null;
 
   return (
-    <main className="min-h-screen bg-[color:var(--ww-bg)] pt-20 pb-20">
+    <main className="min-h-screen bg-[color:var(--ww-bg)] pt-24 pb-24">
       {/* Breadcrumb */}
       <div className="container-wide mb-8">
         <Link
           href="/shop"
-          className="inline-flex items-center gap-1.5 text-[color:var(--ww-muted)] text-sm hover:text-[color:var(--ww-gold)] transition-colors"
-          style={{ fontFamily: "var(--font-mono)" }}
+          className="inline-flex items-center gap-1.5 text-[color:var(--ww-muted)] text-xs hover:text-[color:var(--ww-gold)] transition-colors"
+          style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em" }}
         >
-          <ArrowLeft size={14} />
-          Back to Shop
+          <ArrowLeft size={12} />
+          Shop Prints
         </Link>
       </div>
 
       <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-start">
           {/* Left — hero image */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div
-              className="relative w-full overflow-hidden rounded-xl bg-[color:var(--ww-surface)]"
-              style={{ paddingBottom: `${print.aspectRatio * 100}%` }}
+              className="relative w-full overflow-hidden bg-[color:var(--ww-border)]"
+              style={{
+                paddingBottom: `${print.aspectRatio * 100}%`,
+                borderRadius: "2px",
+              }}
             >
               <Image
                 src={print.src}
@@ -75,7 +78,8 @@ export default async function PrintDetailPage({ params }: PageProps) {
                 priority
               />
             </div>
-            {/* Edition meter */}
+
+            {/* Edition progress — only for limited */}
             {print.edition.type === "limited" &&
               print.edition.total &&
               print.edition.sold !== undefined &&
@@ -86,48 +90,45 @@ export default async function PrintDetailPage({ params }: PageProps) {
                       className="text-[10px] uppercase tracking-widest text-[color:var(--ww-muted)]"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
-                      Edition Progress
+                      Edition
                     </p>
                     <p
                       className="text-[10px] text-[color:var(--ww-muted)]"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
-                      {print.edition.sold} / {print.edition.total} sold
+                      {print.edition.sold}/{print.edition.total} sold
                     </p>
                   </div>
-                  <div className="h-1 rounded-full bg-[color:var(--ww-border)] overflow-hidden">
+                  <div className="h-px bg-[color:var(--ww-border)] overflow-hidden relative">
                     <div
-                      className="h-full rounded-full bg-[color:var(--ww-gold)] transition-all"
+                      className="absolute inset-y-0 left-0 bg-[color:var(--ww-gold)]"
                       style={{
                         width: `${(print.edition.sold / print.edition.total) * 100}%`,
                       }}
                     />
                   </div>
                   <p
-                    className={`text-xs ${remaining <= 5 ? "text-orange-400" : "text-[color:var(--ww-muted)]"}`}
+                    className={`text-[10px] ${remaining <= 5 ? "text-orange-400" : "text-[color:var(--ww-muted)]"}`}
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
-                    {remaining} of {print.edition.total} prints remaining
+                    {remaining} prints remaining
                   </p>
                 </div>
               )}
           </div>
 
-          {/* Right — selector */}
+          {/* Right — purchase panel */}
           <div className="space-y-8">
-            {/* Title block */}
             <div>
-              <p className="text-caption text-[color:var(--ww-gold)] mb-2">
-                {print.category.toUpperCase()}
-              </p>
+              <p className="text-eyebrow mb-3">{print.category}</p>
               <h1
-                className="text-3xl md:text-4xl font-bold text-[color:var(--ww-text)] leading-tight mb-3"
+                className="text-3xl md:text-4xl font-semibold text-[color:var(--ww-text)] leading-tight mb-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {print.title}
               </h1>
               <p
-                className="text-[color:var(--ww-muted)] text-xs uppercase tracking-wide mb-4"
+                className="text-[color:var(--ww-muted)] text-[10px] uppercase tracking-wider mb-5"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {print.location}
@@ -136,6 +137,8 @@ export default async function PrintDetailPage({ params }: PageProps) {
                 {print.description}
               </p>
             </div>
+
+            <div className="h-px bg-[color:var(--ww-border)]" />
 
             <ProductSelector print={print} />
 
@@ -148,14 +151,9 @@ export default async function PrintDetailPage({ params }: PageProps) {
 
         {/* Related prints */}
         {related.length > 0 && (
-          <section className="mt-24">
-            <h2
-              className="text-[color:var(--ww-text)] text-xl font-semibold mb-8"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              You Might Also Like
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <section className="mt-24 pt-12 border-t border-[color:var(--ww-border)]">
+            <p className="text-eyebrow mb-6">You Might Also Like</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
               {related.map((p) => (
                 <PrintCard key={p.id} print={p} />
               ))}

@@ -11,43 +11,50 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   const featured = PLACEHOLDER_PRINTS.filter((p) => p.featured);
   const rest = PLACEHOLDER_PRINTS.filter((p) => !p.featured);
+  const all = [...featured, ...rest];
 
   return (
-    <main className="min-h-screen bg-[color:var(--ww-bg)] pt-24 pb-20">
+    <main className="min-h-screen bg-[color:var(--ww-bg)] pt-28 pb-24">
       <div className="container-wide">
-        {/* Header */}
-        <div className="mb-14 max-w-2xl">
-          <p className="text-caption text-[color:var(--ww-gold)] mb-2">
-            Fine Art Prints
-          </p>
-          <h1 className="heading-section text-[color:var(--ww-text)] mb-4">
-            Own a Piece of the Wild
-          </h1>
-          <p className="text-[color:var(--ww-muted)] leading-relaxed">
-            Museum-quality giclée prints on Hahnemühle paper with archival
-            pigment inks rated 200+ years. Each limited edition ships with a
-            signed Certificate of Authenticity. Open editions printed to order —
-            no minimum run.
-          </p>
+        {/* Page header */}
+        <div className="mb-12 border-b border-[color:var(--ww-border)] pb-10">
+          <p className="text-eyebrow mb-3">Fine Art Prints</p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h1
+              className="heading-section text-[color:var(--ww-text)]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Own a Piece of the Wild
+            </h1>
+            <p
+              className="text-[color:var(--ww-muted)] text-xs"
+              style={{
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.08em",
+              }}
+            >
+              {all.length} PRINTS AVAILABLE
+            </p>
+          </div>
         </div>
 
-        {/* Trust bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 p-6 rounded-xl border border-[color:var(--ww-border)] bg-[color:var(--ww-surface)]">
+        {/* Trust strip — flat, no card */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14 pb-10 border-b border-[color:var(--ww-border)]">
           {[
-            { stat: "200+yr", label: "Archival Lifespan" },
-            { stat: "308gsm", label: "Hahnemühle Paper" },
-            { stat: "Hand", label: "Inspected by Sudiip" },
-            { stat: "Free", label: "India Shipping ₹10K+" },
+            { stat: "200+ yr", label: "Archival lifespan" },
+            { stat: "308 gsm", label: "Hahnemühle paper" },
+            { stat: "Hand-checked", label: "By Sudiip personally" },
+            { stat: "Free shipping", label: "India orders ₹10K+" },
           ].map((item) => (
-            <div key={item.stat} className="text-center">
+            <div key={item.stat}>
               <p
-                className="text-[color:var(--ww-gold)] text-xl font-semibold mb-1"
+                className="text-[color:var(--ww-text)] text-sm font-medium mb-0.5"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {item.stat}
               </p>
               <p
-                className="text-[color:var(--ww-muted)] text-xs uppercase tracking-wide"
+                className="text-[color:var(--ww-muted)] text-[10px] uppercase tracking-wider"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {item.label}
@@ -56,61 +63,32 @@ export default function ShopPage() {
           ))}
         </div>
 
-        {/* Featured prints */}
-        {featured.length > 0 && (
-          <section className="mb-16">
-            <h2
-              className="text-[color:var(--ww-text)] text-xl font-semibold mb-6"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Featured Editions
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featured.map((print) => (
-                <PrintCard key={print.id} print={print} />
-              ))}
-            </div>
-          </section>
-        )}
+        {/* All prints in one grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+          {all.map((print) => (
+            <PrintCard key={print.id} print={print} />
+          ))}
+        </div>
 
-        {/* All prints */}
-        {rest.length > 0 && (
-          <section>
-            <h2
-              className="text-[color:var(--ww-text)] text-xl font-semibold mb-6"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              All Prints
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {rest.map((print) => (
-                <PrintCard key={print.id} print={print} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Custom size CTA */}
-        <div className="mt-20 text-center py-14 px-8 rounded-2xl border border-[color:var(--ww-border)] bg-[color:var(--ww-surface)]">
-          <p className="text-caption text-[color:var(--ww-gold)] mb-3">
+        {/* Custom order CTA — full-bleed dark section */}
+        <div
+          className="mt-24 px-10 py-16 text-center"
+          style={{ background: "var(--ww-dark-bg)", borderRadius: "2px" }}
+        >
+          <p className="text-eyebrow text-[color:var(--ww-gold-light)] mb-4">
             Large Format & Custom Orders
           </p>
           <h3
-            className="text-2xl font-semibold text-[color:var(--ww-text)] mb-3"
+            className="text-2xl font-semibold text-white mb-6"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Need something bigger?
           </h3>
-          <p className="text-[color:var(--ww-muted)] mb-6 max-w-md mx-auto text-sm leading-relaxed">
-            Sudiip accepts custom print commissions for statement-sized pieces
-            (60×40&quot; and above), interior design projects, and corporate
-            art. WhatsApp for pricing and availability.
-          </p>
           <a
             href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Sudiip, I am interested in a custom / large-format print order.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline-gold inline-flex items-center gap-2 text-sm"
+            className="btn-ghost-light inline-flex items-center gap-2 text-sm"
           >
             WhatsApp Sudiip
           </a>
