@@ -2,6 +2,7 @@ import Link from "next/link";
 import NavbarClient from "./NavbarClient";
 
 const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/shop", label: "Shop Prints" },
   { href: "/about", label: "About" },
