@@ -4,15 +4,11 @@ const footerLinks = {
   Explore: [
     { href: "/portfolio", label: "Portfolio" },
     { href: "/shop", label: "Shop Prints" },
-    { href: "/tours", label: "Wildlife Tours" },
     { href: "/workshops", label: "Workshops" },
-    { href: "/blog", label: "Field Notes" },
   ],
   Info: [
     { href: "/about", label: "About Sudiip" },
-    { href: "/conservation", label: "Conservation" },
     { href: "/licensing", label: "Licensing" },
-    { href: "/press", label: "Press" },
     { href: "/faq", label: "FAQ" },
   ],
   Connect: [
