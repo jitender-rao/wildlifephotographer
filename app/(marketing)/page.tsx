@@ -3,6 +3,7 @@ import HeroSection from "@/components/home/HeroSection";
 import StatsBar from "@/components/home/StatsBar";
 import FeaturedGallery from "@/components/home/FeaturedGallery";
 import NewsletterSection from "@/components/home/NewsletterSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -52,6 +53,8 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      <TestimonialsSection />
 
       {/* Tours Teaser — placeholder until Sanity is live */}
       <section className="section-padding bg-[color:var(--ww-surface)] border-t border-[color:var(--ww-border)]">
