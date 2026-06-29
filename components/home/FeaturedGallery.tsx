@@ -54,7 +54,7 @@ export default function FeaturedGallery({ photos }: FeaturedGalleryProps) {
               className="heading-section text-[color:var(--ww-text)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Through the Lens
+              Recent Work
             </h2>
           </div>
           <Link

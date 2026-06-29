@@ -36,7 +36,7 @@ export default function NotFound() {
 
         <h1
           className="text-3xl sm:text-4xl font-bold text-[color:var(--ww-text)] mb-4 leading-tight"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           This page is still in the wild
         </h1>
@@ -46,7 +46,7 @@ export default function NotFound() {
           explore what&apos;s already live.
         </p>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-[color:var(--ww-gold)]/30 to-transparent mb-10" />
+        <div className="h-px bg-[color:var(--ww-border)] mb-10" />
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link href="/" className="btn-gold text-sm px-8 py-3">

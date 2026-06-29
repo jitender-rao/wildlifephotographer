@@ -101,14 +101,11 @@ export default async function HomePage() {
       <section className="section-padding-sm bg-[color:var(--ww-surface-alt)] border-t border-[color:var(--ww-border)]">
         <div className="container-narrow text-center">
           <h2
-            className="heading-section text-[color:var(--ww-text)] mb-4"
+            className="heading-section text-[color:var(--ww-text)] mb-8"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Ready to join Sudiip in the field?
+            Join Sudiip in the Field
           </h2>
-          <p className="text-[color:var(--ww-muted)] text-sm mb-8">
-            Tours, workshops, and bespoke expeditions — enquire via WhatsApp.
-          </p>
           <Link
             href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919000000000"}`}
             target="_blank"

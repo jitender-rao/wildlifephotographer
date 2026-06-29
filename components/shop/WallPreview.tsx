@@ -47,7 +47,7 @@ export function WallPreview({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden rounded-lg bg-[color:var(--ww-surface)]",
+        "relative w-full overflow-hidden bg-[color:var(--ww-surface)]",
         className,
       )}
       style={{ paddingBottom: `${(ROOM_H / ROOM_W) * 100}%` }}

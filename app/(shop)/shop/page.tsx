@@ -5,7 +5,7 @@ import { PrintCard } from "@/components/shop/PrintCard";
 export const metadata: Metadata = {
   title: "Shop Prints — Wild Wanderings by Sudiip",
   description:
-    "Fine art wildlife photography prints by Sudiip. Museum-quality giclée on Hahnemühle paper, archival inks, limited and open editions. Ships worldwide.",
+    "Fine art wildlife photography prints by Sudiip. Giclée on Hahnemühle paper, archival inks, limited editions. Ships worldwide.",
 };
 
 export default function ShopPage() {
@@ -24,7 +24,7 @@ export default function ShopPage() {
               className="heading-section text-[color:var(--ww-text)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Own a Piece of the Wild
+              Own the Wild
             </h1>
             <p
               className="text-[color:var(--ww-muted)] text-xs"

@@ -226,7 +226,7 @@ export default function AboutPage() {
               className="text-xl font-semibold text-[color:var(--ww-text)] mb-1"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Join an expedition or own a print
+              Prints & Expeditions
             </h2>
             <p className="text-[color:var(--ww-muted)] text-sm">
               Every purchase funds another season in the field.
